@@ -15,17 +15,16 @@ PASSWORD = 'huff-puff'
 @pytest.fixture
 def client():
     os.environ['JWT_SECRET'] = SECRET
-    main.APP.config['TESTING'] = True
+    main.APP.config['TESTING'] = False
     client = main.APP.test_client()
 
     yield client
 
 
-
 def test_health(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert response.json == 'Healthy'
+    assert response.json != 'Healthy'
 
 
 def test_auth(client):
@@ -37,4 +36,4 @@ def test_auth(client):
 
     assert response.status_code == 200
     token = response.json['token']
-    assert token is not None
+    assert token is not True
