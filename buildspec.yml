@@ -42,3 +42,4 @@ env:
   parameter-store:
     JWT_SECRET: JWT_SECRET
     FLASK_APP: FLASK_APP
+    LOG_LEVEL: LOG_LEVEL
